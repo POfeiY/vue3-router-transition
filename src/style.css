@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -18,16 +18,16 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 h1 {
@@ -46,9 +46,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,21 +61,52 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  position: relative;
   text-align: center;
+  width: 100vw;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+html {
+  color-scheme: dark;
+}
+
+
+/* 页面最终/最初的状态：屏幕正中间 */
+.go-enter-to,
+.go-leave-from {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 动画持续时间 */
+.go-enter-active,
+.go-leave-active {
+  transition: all 0.3s;
+}
+
+/* 离去动画，表示离去页面最终的css：屏幕左侧 */
+.go-leave-to {
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* 进入动画，表示进入页面，初始的状态：屏幕右侧 */
+.go-enter-from {
+  transform: translate3d(100%, 0, 0);
+}
+
+.back-enter-to,
+.back-enter-from {
+  transform: translate3d(0, 0, 0);
+}
+
+.back-enter-active,
+.back-leave-active {
+  transition: all 0.3s;
+}
+
+.back-enter-from {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.back-leave-to {
+  transform: translate3d(100%, 0, 0);
 }
